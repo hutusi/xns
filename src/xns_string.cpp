@@ -3,45 +3,18 @@
 
 __XNS_BEGIN_NAMESPACE
 
-std::vector<std::string>& String::split(const std::string& str, char splitter, std::vector<std::string>& out){
-	return split(str.c_str(), str.length(), splitter, out);
-}
-
-
-std::vector<std::string>& String::split(const char* str, size_t len, char splitter, std::vector<std::string>& out){
-	out.clear();
-	if (len == 0) return out;
-
-	const char* pos = str;
-	size_t s_len = 0;
-	for (size_t i = 0; i < len; ++i){
-		if (*(pos + s_len) == splitter) {
-			if (s_len > 0) out.push_back(std::string(pos, s_len));
-			pos = str+i+1;
-			s_len = 0;
-		} else {
-			++s_len;
-		}
-	}
-
-	if (s_len > 0) out.push_back(std::string(pos, s_len));
-	return out;
-}
-
-std::vector<std::string>& String::split(const std::string& str, const std::string& splitter, std::vector<std::string>& out){
-	return split(str.c_str(), str.length(), splitter.c_str(), splitter.length(), out);
-}
-
 std::vector<std::string>& String::split(const char* str, size_t len, const char* splitter, size_t sp_len, std::vector<std::string>& out){
 	out.clear();
 	if (len == 0 || sp_len == 0) return out;
 
 	const char* pos = str;
 	size_t s_len = 0;
+
 	for (size_t i = 0; i < len; ++i){
-		if (strncmp(pos, splitter, s_len) == 0) {
+		if ((len - i >= sp_len) && (strncmp(pos+s_len, splitter, sp_len) == 0)) {
 			if (s_len > 0) out.push_back(std::string(pos, s_len));
-			++pos;
+			pos = str+i+sp_len;
+			i += sp_len -1;
 			s_len = 0;
 		} else {
 			++s_len;
@@ -71,31 +44,16 @@ static size_t ltrim_len(const char* str, size_t len, const char* trim_chars, siz
 static size_t rtrim_len(const char* str, size_t len, const char* trim_chars, size_t n){
 	size_t i = 0;
 	for (i = len; i > 0; --i){
-		if (!in_chars(*(str + i), trim_chars, n)) break;
+		if (!in_chars(*(str + i - 1), trim_chars, n)) break;
 	}
 
 	return (len - i);
 }
 
-std::string& String::trim(std::string& str, const std::string& trim_chars){
-	return ltrim(rtrim(str, trim_chars.c_str(), trim_chars.length()), trim_chars.c_str(), trim_chars.length());
-}
-
-std::string& String::trim(std::string& str, const char* trim_chars, size_t n){
-	return ltrim(rtrim(str, trim_chars, n), trim_chars, n);
-}
-
-std::string& String::ltrim(std::string& str, const std::string& trim_chars){
-	return ltrim(str, trim_chars.c_str(), trim_chars.length());
-}
 std::string& String::ltrim(std::string& str, const char* trim_chars, size_t n){
 	size_t trim_len = ltrim_len(str.c_str(), str.length(), trim_chars, n);
 	if (trim_len > 0) str.erase(0, trim_len);
 	return str;
-}
-
-std::string& String::rtrim(std::string& str, const std::string& trim_chars){
-	return rtrim(str, trim_chars.c_str(), trim_chars.length());
 }
 
 std::string& String::rtrim(std::string& str, const char* trim_chars, size_t n){
@@ -103,18 +61,6 @@ std::string& String::rtrim(std::string& str, const char* trim_chars, size_t n){
 	size_t trim_len = rtrim_len(str.c_str(), len, trim_chars, n);
 	if (trim_len > 0) str.erase(len - trim_len, trim_len);
 	return str;
-}
-
-std::string& String::trim(std::string& str) {
-	return ltrim(rtrim(str));
-}
-
-std::string& String::ltrim(std::string& str){
-	return ltrim(str, " \t\n\r", 4);
-}
-
-std::string& String::rtrim(std::string& str){
-	return rtrim(str, " \t\n\r", 4);
 }
 
 static inline bool is_uppercase(char ch){

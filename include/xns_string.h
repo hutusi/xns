@@ -22,19 +22,46 @@ inline std::string operator*(const std::string& str, size_t times){
 
 class String {
 public:
-	static std::vector<std::string>& split(const std::string& str, char splitter, std::vector<std::string>& out);
-	static std::vector<std::string>& split(const char* str, size_t len, char splitter, std::vector<std::string>& out);
-	static std::vector<std::string>& split(const std::string& str, const std::string& splitter, std::vector<std::string>& out);
+	static inline std::vector<std::string>& split(const std::string& str, char splitter, std::vector<std::string>& out){
+		return split(str.c_str(), str.length(), splitter, out);
+	}
+
+	static inline std::vector<std::string>& split(const char* str, size_t len, char splitter, std::vector<std::string>& out){
+		char sp[] = {splitter,'\0'};
+		return split(str, len, sp, 1, out);
+	}
+
+	static inline std::vector<std::string>& split(const std::string& str, const std::string& splitter, std::vector<std::string>& out){
+		return split(str.c_str(), str.length(), splitter.c_str(), splitter.length(), out);
+	}
+
 	static std::vector<std::string>& split(const char* str, size_t len, const char* splitter, size_t sp_len, std::vector<std::string>& out);
 
-	static std::string& trim(std::string& str);
-	static std::string& trim(std::string& str, const std::string& trim_chars);
-	static std::string& trim(std::string& str, const char* trim_chars, size_t n);
-	static std::string& ltrim(std::string& str);
-	static std::string& ltrim(std::string& str, const std::string& trim_chars);
+
+	static inline std::string& trim(std::string& str){
+		return ltrim(rtrim(str));
+	}
+	static inline std::string& trim(std::string& str, const std::string& trim_chars){
+		return ltrim(rtrim(str, trim_chars.c_str(), trim_chars.length()), trim_chars.c_str(), trim_chars.length());
+	}
+	static inline std::string& trim(std::string& str, const char* trim_chars, size_t n){
+		return ltrim(rtrim(str, trim_chars, n), trim_chars, n);
+	}
+
+	static inline std::string& ltrim(std::string& str){
+		return ltrim(str, " \t\n\r", 4);
+	}
+	static inline std::string& ltrim(std::string& str, const std::string& trim_chars){
+		return ltrim(str, trim_chars.c_str(), trim_chars.length());
+	}
 	static std::string& ltrim(std::string& str, const char* trim_chars, size_t n);
-	static std::string& rtrim(std::string& str);
-	static std::string& rtrim(std::string& str, const std::string& trim_chars);
+
+	static inline std::string& rtrim(std::string& str){
+		return rtrim(str, " \t\n\r", 4);
+	}
+	static inline std::string& rtrim(std::string& str, const std::string& trim_chars){
+		return rtrim(str, trim_chars.c_str(), trim_chars.length());
+	}
 	static std::string& rtrim(std::string& str, const char* trim_chars, size_t n);
 
 	static std::string& capitalize(std::string& str);

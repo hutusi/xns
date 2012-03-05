@@ -17,10 +17,6 @@ static bool vector_equal_to_string_array(const vector<string>& vec, const string
 
 class test_split_string : public Test{
 protected:
-	inline bool equal_to(const string str_array[]){
-		return vector_equal_to_string_array(out, str_array);
-	}
-
 	virtual void SetUp() {
 	}
 	virtual void TearDown() {
@@ -33,9 +29,65 @@ protected:
 TEST_F(test_split_string, use_normal_string){
 	string s("");
 	ASSERT_EQ(String::split(string("@@@qqq###@@@@ qqq @aaa "), '@', out).size(), 3);
+	const string sa[] = {"qqq###", " qqq ", "aaa "};
+	ASSERT_TRUE(vector_equal_to_string_array(out, sa));
 }
 
-// ...
+TEST_F(test_split_string, use_null_string){
+	string s("");
+	ASSERT_EQ(String::split(string(""), '@', out).size(), 0);
+}
+
+TEST_F(test_split_string, use_string_excluded_splitter){
+	string s("");
+	ASSERT_EQ(String::split(string("@qqq###@ qqq @aaa "), "@@", out).size(), 1);
+	const string sa[] = {"@qqq###@ qqq @aaa "};
+	ASSERT_TRUE(vector_equal_to_string_array(out, sa));
+}
+
+TEST_F(test_split_string, use_normal_string_split_by_string){
+	string s("");
+	ASSERT_EQ(String::split(string("@@@qqq###@@@@ qqq @@aaa@ "), "@@", out).size(), 3);
+	const string sa[] = {"@qqq###", " qqq ", "aaa@ "};
+	ASSERT_TRUE(vector_equal_to_string_array(out, sa));
+}
+
+TEST_F(test_split_string, use_string_included_null_charactor){
+	string s("");
+	ASSERT_EQ(String::split(string("@@@\0@@\0@aaa@\0@bbb@\0@\0ccc\0@", 26), string("@\0@", 3), out).size(), 4);
+	const string sa[] = {string("@@"), string("aaa"), string("bbb"), string("\0ccc\0@", 6)};
+	ASSERT_TRUE(vector_equal_to_string_array(out, sa));
+}
+
+TEST(test_trim, trim_both_ends_blank)
+{
+	string s(" \t\t aaa \t bb\t\r\n  ");
+	ASSERT_EQ(String::trim(s), "aaa \t bb");
+}
+
+TEST(test_trim, trim_blank_string)
+{
+	string s(" \t\n\t\t  ");
+	ASSERT_EQ(String::trim(s), "");
+}
+
+TEST(test_trim, trim_string_spec_chars)
+{
+	string s(" xxxyzabcxxxdefg xyz");
+	ASSERT_EQ(String::trim(s, string(" x\0yz", 5)), "abcxxxdefg");
+}
+
+TEST(test_trim, ltrim_string_spec_chars)
+{
+	string s(" xxxyzabcxxxdefg xyz");
+	ASSERT_EQ(String::ltrim(s, string(" x\0yz", 5)), "abcxxxdefg xyz");
+}
+
+TEST(test_trim, rtrim_string_spec_chars)
+{
+	string s(" xxxyzabcxxxdefg xyz");
+	ASSERT_EQ(String::rtrim(s, string(" x\0yz", 5)), " xxxyzabcxxxdefg");
+}
 
 TEST(test_string_case, capitalize){
 	string s = "abc@";
@@ -133,5 +185,5 @@ TEST(test_search, search_all){
 
 TEST(test_substitute, sub){
 	string s("ababc123=+abc");
-	ASSERT_EQ(String::sub(s, "abc", "\\\\1xx"), "abxx123=+abc");
+	ASSERT_EQ(String::sub(s, "abc", "xx"), "abxx123=+abc");
 }
