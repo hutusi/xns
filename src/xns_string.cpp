@@ -1,6 +1,8 @@
 
 #include "../include/xns_string.h"
 
+#include <iostream>
+
 __XNS_BEGIN_NAMESPACE
 
 std::vector<std::string>& String::split(const char* str, size_t len, const char* splitter, size_t sp_len, std::vector<std::string>& out){
@@ -61,14 +63,6 @@ std::string& String::rtrim(std::string& str, const char* trim_chars, size_t n){
 	size_t trim_len = rtrim_len(str.c_str(), len, trim_chars, n);
 	if (trim_len > 0) str.erase(len - trim_len, trim_len);
 	return str;
-}
-
-static inline bool is_uppercase(char ch){
-	return (ch >= 'A' && ch <= 'Z');
-}
-
-static inline bool is_lowercase(char ch){
-	return (ch >= 'a' && ch <= 'z');
 }
 
 std::string& String::capitalize(std::string& str){
@@ -231,13 +225,69 @@ std::string& String::search(const std::string& str, const std::string& regexp, s
 	return out;
 }
 
+
+static bool has_catch(const std::string& fmt){
+	size_t len = fmt.length();
+	for(size_t i = 0; i < len-1; ++i){
+		if(fmt[i] == '\\' && is_digital(fmt[i+1])) return true;
+	}
+	return false;
+}
+
+
+
+static std::string& sub_catch(std::cmatch& mrs, const std::string& fmt, std::string& out){
+	out.clear();
+	size_t len = fmt.length();
+	size_t i=0;
+
+	for(i=0; i<len-1; ++i){
+		if (fmt[i] == '\\' && is_digital(fmt[i+1])){
+			out += mrs[char_to_int(fmt[i+1])].str();
+			++i;
+		} else {
+			out += fmt[i];
+		}
+	}
+
+	if(i<len) out += fmt[i];
+	return out;
+}
+
 std::string& String::sub(std::string& str, const std::string& regexp, const std::string& fmt){
-	str = std::regex_replace(str, std::regex(regexp), fmt, std::regex_constants::format_first_only);
+	if (has_catch(fmt)){
+		std::cmatch mrs;
+		if (std::regex_search(str.c_str(), str.c_str()+ str.length(), mrs, std::regex(regexp))){
+			std::string s;
+			str = mrs.prefix().str();
+			std::string suf = mrs.suffix().str();
+			str += sub_catch(mrs, fmt, s);
+			str += suf;		
+		} 
+	} else {
+		str = std::regex_replace(str, std::regex(regexp), fmt, std::regex_constants::format_first_only);
+	}
+	
 	return str;
 }
 
 std::string& String::gsub(std::string& str, const std::string& regexp, const std::string& fmt){
-	str = std::regex_replace(str, std::regex(regexp), fmt);
+	if (has_catch(fmt)){
+		std::cmatch mrs;
+		std::regex rx(regexp);
+		std::string suf = str;
+		str.clear();
+		while (std::regex_search(suf.c_str(), suf.c_str()+ suf.length(), mrs, rx, std::regex_constants::format_first_only)){
+			std::string s;
+			str += mrs.prefix();
+			suf = mrs.suffix();
+			str += sub_catch(mrs, fmt, s);
+		}
+		str += suf;
+	} else {
+		str = std::regex_replace(str, std::regex(regexp), fmt);
+	}
+
 	return str;
 }
 

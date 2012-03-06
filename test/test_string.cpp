@@ -187,3 +187,15 @@ TEST(test_substitute, sub){
 	string s("ababc123=+abc");
 	ASSERT_EQ(String::sub(s, "abc", "xx"), "abxx123=+abc");
 }
+
+TEST(test_substitute, sub_with_catch){
+	string s("ababc123=+abc");
+	ASSERT_EQ(String::sub(s, "a(bc)", "\\1xx"), "abbcxx123=+abc");
+}
+
+TEST(test_substitute, gsub_with_catch){
+	string s("ababc123=+abc");
+	ASSERT_EQ(String::gsub(s, "a(bc)", "\\1xx"), "abbcxx123=+bcxx");
+}
+
+

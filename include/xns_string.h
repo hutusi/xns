@@ -12,14 +12,6 @@
 
 __XNS_BEGIN_NAMESPACE
 
-inline std::string operator*(const std::string& str, size_t times){
-	std::string s;
-	for (size_t i=0; i<times; ++i){
-		s += str;
-	}
-	return s;
-}
-
 class String {
 public:
 	static inline std::vector<std::string>& split(const std::string& str, char splitter, std::vector<std::string>& out){
@@ -99,5 +91,33 @@ public:
 private:
 	String(){}
 };
+
+inline std::string operator*(const std::string& str, size_t times){
+	std::string s;
+	for (size_t i=0; i<times; ++i){
+		s += str;
+	}
+	return s;
+}
+
+inline bool is_digital(char ch){
+	return (ch >= '0' && ch <= '9');
+}
+
+inline bool is_uppercase(char ch){
+	return (ch >= 'A' && ch <= 'Z');
+}
+
+inline bool is_lowercase(char ch){
+	return (ch >= 'a' && ch <= 'z');
+}
+
+inline bool is_alphabetic(char ch){
+	return is_uppercase(ch)||is_lowercase(ch);
+}
+
+inline int char_to_int(char ch){
+	return ch - '0';
+}
 
 __XNS_END_NAMESPACE
