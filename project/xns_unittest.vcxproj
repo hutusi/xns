@@ -41,7 +41,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\test;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\test;..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -63,6 +63,8 @@
   <ItemGroup>
     <ClCompile Include="..\test\src\gtest-all.cc" />
     <ClCompile Include="..\test\src\gtest_main.cc" />
+    <ClCompile Include="..\test\test_factory_template.cpp" />
+    <ClCompile Include="..\test\test_path.cpp" />
     <ClCompile Include="..\test\test_string.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

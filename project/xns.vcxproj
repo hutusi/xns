@@ -11,10 +11,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\xns_string.h" />
+    <ClCompile Include="..\src\directory.cpp" />
+    <ClCompile Include="..\src\file.cpp" />
+    <ClCompile Include="..\src\inifile.cpp" />
+    <ClCompile Include="..\src\path.cpp" />
+    <ClCompile Include="..\src\string.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\xns_string.cpp" />
+    <ClInclude Include="..\include\xns\defs.h" />
+    <ClInclude Include="..\include\xns\directory.h" />
+    <ClInclude Include="..\include\xns\file.h" />
+    <ClInclude Include="..\include\xns\inifile.h" />
+    <ClInclude Include="..\include\xns\path.h" />
+    <ClInclude Include="..\include\xns\pattern\factory_template.h" />
+    <ClInclude Include="..\include\xns\pattern\singleton.h" />
+    <ClInclude Include="..\include\xns\string.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{53D0605D-2BC0-4077-8126-A33BAF8AE28A}</ProjectGuid>
@@ -47,6 +58,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
