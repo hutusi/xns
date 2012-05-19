@@ -23,7 +23,16 @@
     <ClInclude Include="..\include\xns\file.h" />
     <ClInclude Include="..\include\xns\inifile.h" />
     <ClInclude Include="..\include\xns\path.h" />
+    <ClInclude Include="..\include\xns\pattern\abstract_factory.h" />
+    <ClInclude Include="..\include\xns\pattern\adapter.h" />
+    <ClInclude Include="..\include\xns\pattern\builder.h" />
+    <ClInclude Include="..\include\xns\pattern\command.h" />
+    <ClInclude Include="..\include\xns\pattern\command_factory.h" />
+    <ClInclude Include="..\include\xns\pattern\command_executer.h" />
+    <ClInclude Include="..\include\xns\pattern\decorator.h" />
     <ClInclude Include="..\include\xns\pattern\factory_template.h" />
+    <ClInclude Include="..\include\xns\pattern\pattern_defs.h" />
+    <ClInclude Include="..\include\xns\pattern\prototype.h" />
     <ClInclude Include="..\include\xns\pattern\singleton.h" />
     <ClInclude Include="..\include\xns\string.h" />
   </ItemGroup>

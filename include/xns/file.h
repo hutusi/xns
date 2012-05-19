@@ -3,10 +3,21 @@
 
 #include "path.h"
 #include <fstream>
+#include <vector>
 
 __XNS_BEGIN_NAMESPACE
 
 class File{
+public:
+	static bool exist(const char* file);
+	static std::streamsize get_size(const char* file);
+
+	static std::string& read(const char* file, std::string& buffer);
+	static std::string& read(const char* file, std::string& buffer, std::streamsize size);
+	static std::vector<std::string>& readlines(const char* file, std::vector<std::string>& lines);
+	static std::streamsize write(const char* file, const std::string& s);
+	static std::streamsize write(const char* file, const char* s, std::streamsize size);
+
 public:
 	File(const char* path);
 	File(const std::string& path);

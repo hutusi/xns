@@ -39,8 +39,22 @@ private:
 	std::vector<T*> products_;
 };
 
-class Product;
-#define REGISTER_PRODUCT_CATEGORY(CATEGORY_TYPE, PRODUCT_CLASS) \
-	static bool register_for_##PRODUCT_CLASS = Factory<Product>::Register(CATEGORY_TYPE, (_MAKER)(PRODUCT_CLASS::new_instance));
-#define DEFINE_PRODUCT_MAKER(PRODUCT_CLASS) \
-	static Product* new_instance(){  return new PRODUCT_CLASS();  }
+#define REGISTER_PRODUCT_CATEGORY(PRODUCT_TYPE, PRODUCT_CLASS, CATEGORY_TYPE) \
+	static bool register_for_##PRODUCT_CLASS = Factory<PRODUCT_TYPE>::Register(CATEGORY_TYPE, (_MAKER)(PRODUCT_CLASS::new_instance));
+#define DEFINE_PRODUCT_MAKER(PRODUCT_TYPE, PRODUCT_CLASS) \
+	static PRODUCT_TYPE* new_instance(){  return new PRODUCT_CLASS();  }
+
+/// usage: 
+///		class SampleProductType{
+///		  ...
+///		};
+///		typedef typedef Factory<SampleProductType> SampleFactory;
+///		
+///		#define REGISTER_SAMPLE_PRODUCT_CATEGORY(PRODUCT_CLASS, CATEGORY_TYPE)  \
+///			REGISTER_PRODUCT_CATEGORY(SampleProductType, PRODUCT_CLASS, CATEGORY_TYPE)
+///		#define DEFINE_SAMPLE_PRODUCT_MAKER(PRODUCT_CLASS)  \
+///			DEFINE_PRODUCT_MAKER(SampleProductType, PRODUCT_CLASS)
+/// 
+/// more in:
+///		command_factory.h
+/// 

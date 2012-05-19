@@ -32,6 +32,11 @@ public:
 	bool has(const File& file);
 	bool has(const Directory& folder);
 
+	static std::vector<std::string>& folders(const char* dir, std::vector<std::string>& out);
+	static std::vector<std::string>& files(const char* dir, std::vector<std::string>& out);
+
+	static bool include(const char* file);
+
 private:
 	Path path_;
 	std::vector<Directory> folders_;
