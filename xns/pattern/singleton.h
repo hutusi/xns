@@ -32,7 +32,9 @@ public:
 		return maps_[name];
 	}
 
-	bool register(const std::string& name, Singleton* instance);
+	bool register_(const char* name, Singleton* instance){
+		return true;
+	}
 
 private:
 	std::map<std::string, Singleton*> maps_;

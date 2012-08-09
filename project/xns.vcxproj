@@ -11,30 +11,30 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\directory.cpp" />
-    <ClCompile Include="..\src\file.cpp" />
-    <ClCompile Include="..\src\inifile.cpp" />
-    <ClCompile Include="..\src\path.cpp" />
-    <ClCompile Include="..\src\string.cpp" />
+    <ClCompile Include="..\xns\directory.cpp" />
+    <ClCompile Include="..\xns\file.cpp" />
+    <ClCompile Include="..\xns\inifile.cpp" />
+    <ClCompile Include="..\xns\path.cpp" />
+    <ClCompile Include="..\xns\string.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\xns\defs.h" />
-    <ClInclude Include="..\include\xns\directory.h" />
-    <ClInclude Include="..\include\xns\file.h" />
-    <ClInclude Include="..\include\xns\inifile.h" />
-    <ClInclude Include="..\include\xns\path.h" />
-    <ClInclude Include="..\include\xns\pattern\abstract_factory.h" />
-    <ClInclude Include="..\include\xns\pattern\adapter.h" />
-    <ClInclude Include="..\include\xns\pattern\builder.h" />
-    <ClInclude Include="..\include\xns\pattern\command.h" />
-    <ClInclude Include="..\include\xns\pattern\command_factory.h" />
-    <ClInclude Include="..\include\xns\pattern\command_executer.h" />
-    <ClInclude Include="..\include\xns\pattern\decorator.h" />
-    <ClInclude Include="..\include\xns\pattern\factory_template.h" />
-    <ClInclude Include="..\include\xns\pattern\pattern_defs.h" />
-    <ClInclude Include="..\include\xns\pattern\prototype.h" />
-    <ClInclude Include="..\include\xns\pattern\singleton.h" />
-    <ClInclude Include="..\include\xns\string.h" />
+    <ClInclude Include="..\xns\defs.h" />
+    <ClInclude Include="..\xns\directory.h" />
+    <ClInclude Include="..\xns\file.h" />
+    <ClInclude Include="..\xns\inifile.h" />
+    <ClInclude Include="..\xns\path.h" />
+    <ClInclude Include="..\xns\pattern\abstract_factory.h" />
+    <ClInclude Include="..\xns\pattern\adapter.h" />
+    <ClInclude Include="..\xns\pattern\builder.h" />
+    <ClInclude Include="..\xns\pattern\command.h" />
+    <ClInclude Include="..\xns\pattern\command_factory.h" />
+    <ClInclude Include="..\xns\pattern\command_executer.h" />
+    <ClInclude Include="..\xns\pattern\decorator.h" />
+    <ClInclude Include="..\xns\pattern\factory_template.h" />
+    <ClInclude Include="..\xns\pattern\pattern_defs.h" />
+    <ClInclude Include="..\xns\pattern\prototype.h" />
+    <ClInclude Include="..\xns\pattern\singleton.h" />
+    <ClInclude Include="..\xns\string.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{53D0605D-2BC0-4077-8126-A33BAF8AE28A}</ProjectGuid>
@@ -67,7 +67,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

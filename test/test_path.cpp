@@ -1,4 +1,4 @@
-#include "../src/path.cpp"
+#include "xns/path.cpp"
 
 #include "gtest/gtest.h"
 

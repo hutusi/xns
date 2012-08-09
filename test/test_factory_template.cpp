@@ -1,6 +1,6 @@
 
 #include "xns/pattern/factory_template.h"
-#include "xns\pattern\singleton.h"
+#include "xns/pattern/singleton.h"
 
 #include "gtest/gtest.h"
 using namespace testing;
@@ -14,12 +14,12 @@ public:
 
 class AP : public Product{
 public:
-	DEFINE_PRODUCT_MAKER(AP)
+	DEFINE_PRODUCT_MAKER(Product, AP)
 
 	virtual void Show(){cout<<"I'm AP!";}
 };
 
-REGISTER_PRODUCT_CATEGORY(1, AP)
+REGISTER_PRODUCT_CATEGORY(Product, AP, 1)
 
 TEST(test_factory, test){
 	Factory<Product> fa;

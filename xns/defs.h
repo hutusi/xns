@@ -7,4 +7,6 @@
 #define __XNS_END_NAMESPACE    }
 #define __XNS_USING_NAMESPACE  using namespace XNS;
 
+#ifndef interface
 #define interface class
+#endif

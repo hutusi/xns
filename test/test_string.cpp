@@ -1,5 +1,5 @@
 
-#include "../src/string.cpp"
+#include "xns/string.cpp"
 
 #include "gtest/gtest.h"
 
