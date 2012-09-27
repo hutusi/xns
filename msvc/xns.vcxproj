@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\xns\char.h" />
     <ClInclude Include="..\include\xns\defs.h" />
     <ClInclude Include="..\include\xns\directory.h" />
     <ClInclude Include="..\include\xns\file.h" />

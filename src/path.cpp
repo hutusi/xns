@@ -31,13 +31,6 @@ const bool Path::chdir(const char* new_dir){
 
 
 Path::Path(){
-	path_ = get_current();
-	parse();
-}
-
-Path::Path(const char* str){
-	path_ = str;
-	parse();
 }
 
 Path::Path(const string& str){
@@ -51,7 +44,7 @@ Path::Path(const Path& path) {
 	name_ = path.name_;
 }
 
-Path::~Path(){
+Path::~Path() throw(){
 }
 
 Path& Path::operator=(const Path& path){
@@ -62,30 +55,11 @@ Path& Path::operator=(const Path& path){
 	return *this;
 }
 
-Path& Path::operator=(const char* str){
-	path_ = str;
-	parse();
-
-	return *this;
-}
-
 Path& Path::operator=(const std::string& str){
 	path_ = str;
 	parse();
 
 	return *this;
-}
-
-bool Path::operator==(const Path& path) const{
-	return true;
-}
-
-bool Path::operator==(const char* str) const{
-	return true;
-}
-	
-bool Path::operator==(const std::string& str) const{
-	return true;
 }
 
 void Path::parse(){

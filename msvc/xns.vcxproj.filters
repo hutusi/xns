@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{ea289f3b-9d7a-4293-91d7-647e33c6c93f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{99de71ac-7103-4873-9cee-06510cf74471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\xns">
+      <UniqueIdentifier>{83c99641-c8e4-4530-8671-372419f10c8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\xns\pattern">
+      <UniqueIdentifier>{c21f031e-f61c-4d1b-b364-51db617eb931}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\xns\defs.h">
+      <Filter>include\xns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\directory.h">
+      <Filter>include\xns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\file.h">
+      <Filter>include\xns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\inifile.h">
+      <Filter>include\xns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\path.h">
+      <Filter>include\xns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\string.h">
+      <Filter>include\xns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\pattern\abstract_factory.h">
+      <Filter>include\xns\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\pattern\adapter.h">
+      <Filter>include\xns\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\pattern\builder.h">
+      <Filter>include\xns\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\pattern\command.h">
+      <Filter>include\xns\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\pattern\command_executer.h">
+      <Filter>include\xns\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\pattern\command_factory.h">
+      <Filter>include\xns\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\pattern\decorator.h">
+      <Filter>include\xns\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\pattern\factory_template.h">
+      <Filter>include\xns\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\pattern\pattern_defs.h">
+      <Filter>include\xns\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\pattern\prototype.h">
+      <Filter>include\xns\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\pattern\singleton.h">
+      <Filter>include\xns\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\xns\char.h">
+      <Filter>include\xns</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\directory.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\file.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\inifile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\path.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\string.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -22,4 +22,4 @@
 *.sdf
 *.ipch
 *.suo
-*.filters
+# *.filters
